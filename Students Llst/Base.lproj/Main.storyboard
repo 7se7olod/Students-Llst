@@ -17,18 +17,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9Uk-qm-pXD">
-                                <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="9Uk-qm-pXD" customClass="TableViewCell" customModule="Students_Llst" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Uk-qm-pXD" id="sHq-u3-fpW">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxt-H6-8Nn">
+                                            <rect key="frame" x="20" y="6" width="143" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5f-1E-stK">
+                                            <rect key="frame" x="329" y="6" width="79" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBoldItalic" family="Avenir Next" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qoq-he-9yD">
+                                            <rect key="frame" x="171" y="6" width="150" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="averageScore" destination="h5f-1E-stK" id="i69-Of-HAG"/>
+                                    <outlet property="nameLabel" destination="Kxt-H6-8Nn" id="EGc-MV-sp4"/>
+                                    <outlet property="surnameLabel" destination="Qoq-he-9yD" id="6wb-hO-Lli"/>
                                     <segue destination="l8t-b6-RVf" kind="show" identifier="editInfo" id="bpd-hg-CGs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="BQ0-sQ-tSk" id="4Q0-Zv-D2w"/>
                             <outlet property="delegate" destination="BQ0-sQ-tSk" id="aHw-wO-szy"/>
@@ -44,7 +71,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2s-ei-NN1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-457.97101449275368" y="-40.178571428571423"/>
+            <point key="canvasLocation" x="-458.41121495327099" y="-40.820734341252702"/>
         </scene>
         <!--New student-->
         <scene sceneID="di8-bI-Nke">
@@ -70,6 +97,9 @@
                                                 <rect key="frame" x="0.0" y="76.333333333333343" width="348" height="35"/>
                                                 <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
+                                                <connections>
+                                                    <action selector="enterNameTF:" destination="Kj9-78-FEw" eventType="editingChanged" id="Ky0-wV-jwA"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -86,6 +116,9 @@
                                                 <rect key="frame" x="0.0" y="76.333333333333371" width="348" height="35"/>
                                                 <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                                <connections>
+                                                    <action selector="enterNameTF:" destination="Kj9-78-FEw" eventType="editingChanged" id="S37-V8-r5t"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -195,11 +228,27 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New student" id="5Xs-af-CIH">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qRk-4o-MoT"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0zy-u5-AAL"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qRk-4o-MoT">
+                            <connections>
+                                <action selector="cancelButton:" destination="Kj9-78-FEw" id="kYb-qK-38y"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0zy-u5-AAL">
+                            <connections>
+                                <action selector="saveButton:" destination="Kj9-78-FEw" id="47I-R5-o5s"/>
+                                <segue destination="Dbk-TV-6M5" kind="unwind" identifier="saveSegue" unwindAction="unwindSegueWithSegue:" id="EXT-EB-JTS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="averageScoreTextField" destination="XAT-VG-p89" id="0nG-3o-u0a"/>
+                        <outlet property="nameTextField" destination="DqG-jG-HCy" id="pH1-TX-5TK"/>
+                        <outlet property="saveOutlet" destination="0zy-u5-AAL" id="laH-S9-fPn"/>
+                        <outlet property="surnameTextField" destination="Z1j-x0-lOA" id="Bmf-Mf-iVU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OK8-yF-DQ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Dbk-TV-6M5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1350.7246376811595" y="-40.178571428571423"/>
         </scene>
@@ -242,7 +291,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cJa-PI-Pr7"/>
+        <segue reference="bpd-hg-CGs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
