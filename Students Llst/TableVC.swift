@@ -8,16 +8,13 @@
 import UIKit
 
 class TableVC: UITableViewController {
-
-    var students = [ Students(name: "Vsevolod", surname: "Pushin", averageScore: 5) ]
+    
+    var students = [ Students(name: "Vsevolod", surname: "Pushin", averageScore: "5") ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-
     }
-
+    
     @IBAction func unwindSegue( segue: UIStoryboardSegue) {
         
         guard segue.identifier == "saveSegue" else { return }
@@ -33,7 +30,7 @@ class TableVC: UITableViewController {
             tableView.insertRows(at: [newIndexPath], with: .fade)
         }
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -49,21 +46,20 @@ class TableVC: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return students.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-
+        
         let person = students[indexPath.row]
         cell.set(person: person)
-
+        
         return cell
     }
-
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -74,7 +70,4 @@ class TableVC: UITableViewController {
             
         }    
     }
-
-
-
 }

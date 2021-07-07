@@ -8,17 +8,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var studentsVC = Students(name: "", surname: "", averageScore: 1)
+    
+    var studentsVC = Students(name: "", surname: "", averageScore: "")
+    var messageOne = "Please, enter a number from 1 to 5"
+    var messageTwo = "Please, enter only English or Russian letters"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
         surnameTextField.delegate = self
         averageScoreTextField.delegate = self
+        hideSaveButton()
         updateUI()
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -26,7 +29,7 @@ class ViewController: UIViewController {
         let name = nameTextField.text ?? ""
         let surname = surnameTextField.text ?? ""
         let averageScore = averageScoreTextField.text ?? ""
-        self.studentsVC = Students(name: name, surname: surname, averageScore: Int(averageScore)!)
+        self.studentsVC = Students(name: name, surname: surname, averageScore: averageScore)
     }
     
     private func updateUI() {
@@ -35,33 +38,60 @@ class ViewController: UIViewController {
         averageScoreTextField.text = String(studentsVC.averageScore)
     }
     
-    func alertController() {
-        let alertController = UIAlertController(title: "Error", message: "enter a number from 1 to 5", preferredStyle: .alert)
+    func alertController(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message , preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(ok)
         present(alertController, animated: true, completion: nil)
     }
     
-    
-    @IBAction func enterNameTF(_ sender: Any) {
+    private func hideSaveButton() {
+        let name = nameTextField.text ?? ""
+        let surname = surnameTextField.text ?? ""
+        let score = averageScoreTextField.text ?? ""
         
+        saveOutlet.isEnabled = !name.isEmpty && !surname.isEmpty && !score.isEmpty
+    }
+
+    
+    @IBAction func followTheText(_ sender: UITextField!) {
+        hideSaveButton()
+    }
+    
+    @IBAction func enterNameTF(_ sender: UITextField!) {
+        
+        guard let lastChar = sender.text?.last?.description.lowercased() else { return }
+        let ruCharacters = "йцукенгшщзхъфывапролджэёячсмитьбю"
+        let engCharacters = "qwertyuiopasdfghjklzxcvbnm"
+        guard ruCharacters.contains(lastChar) || engCharacters.contains(lastChar) else {
+            alertController(message: messageTwo)
+            sender.text?.removeLast()
+            return
+        }
+    }
+    
+    @IBAction func averageAction(_ sender: UITextField) {
+        guard let lastChar = sender.text?.last?.description.lowercased() else { return }
+        let numbers = "12345"
+        guard numbers.contains(lastChar) else {
+            alertController(message: messageOne)
+            sender.text?.removeLast()
+            return
+        }
     }
     
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var surnameTextField: UITextField!
     @IBOutlet var averageScoreTextField: UITextField!
     
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
-    }
-    
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet var saveOutlet: UIBarButtonItem!
-    
-
 }
+
+
 
 extension ViewController: UITextFieldDelegate {
     
@@ -84,20 +114,17 @@ extension ViewController: UITextFieldDelegate {
         return true
     }
     
+    //ограничение ввода символов до 1
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == averageScoreTextField {
             
-            let allowedNumbers = CharacterSet(charactersIn:"12345")
-            let characterSet = CharacterSet(charactersIn: string)
-            
             let length = !string.isEmpty ? averageScoreTextField.text!.count + 1 : averageScoreTextField.text!.count - 1
             
             if length > 1 {
-                alertController()
+                alertController(message: messageOne)
                 return false
             }
-            return allowedNumbers.isSuperset(of: characterSet)
         }
         return true
     }

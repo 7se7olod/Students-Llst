@@ -11,7 +11,5 @@ import Foundation
 struct Students {
     var name: String
     var surname: String
-    var averageScore: Int
+    var averageScore: String
 }
-
-
