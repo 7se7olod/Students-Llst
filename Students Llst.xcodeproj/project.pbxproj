@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6F9A71269D8CAC00EDE934 /* EditStudentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F9A70269D8CAC00EDE934 /* EditStudentTVC.swift */; };
+		2DE3EAD72699CF01000A1C75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3EAD52699CF01000A1C75 /* Model.xcdatamodeld */; };
+		2DE3EADC269C6DD7000A1C75 /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3EADB269C6DD7000A1C75 /* SecondTableViewController.swift */; };
 		2DEAC179269466430041BF55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEAC178269466430041BF55 /* AppDelegate.swift */; };
 		2DEAC17B269466430041BF55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEAC17A269466430041BF55 /* SceneDelegate.swift */; };
-		2DEAC17D269466430041BF55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEAC17C269466430041BF55 /* ViewController.swift */; };
 		2DEAC180269466430041BF55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DEAC17E269466430041BF55 /* Main.storyboard */; };
 		2DEAC182269466480041BF55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DEAC181269466480041BF55 /* Assets.xcassets */; };
 		2DEAC185269466480041BF55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DEAC183269466480041BF55 /* LaunchScreen.storyboard */; };
@@ -19,10 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D6F9A70269D8CAC00EDE934 /* EditStudentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentTVC.swift; sourceTree = "<group>"; };
+		2DE3EAD62699CF01000A1C75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		2DE3EADB269C6DD7000A1C75 /* SecondTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
 		2DEAC175269466430041BF55 /* Students Llst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Students Llst.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DEAC178269466430041BF55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DEAC17A269466430041BF55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2DEAC17C269466430041BF55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DEAC17F269466430041BF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DEAC181269466480041BF55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DEAC184269466480041BF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,13 +68,15 @@
 			children = (
 				2DEAC178269466430041BF55 /* AppDelegate.swift */,
 				2DEAC17A269466430041BF55 /* SceneDelegate.swift */,
-				2DEAC17C269466430041BF55 /* ViewController.swift */,
+				2DE3EADB269C6DD7000A1C75 /* SecondTableViewController.swift */,
+				2D6F9A70269D8CAC00EDE934 /* EditStudentTVC.swift */,
 				2DEAC18D269467920041BF55 /* TableVC.swift */,
 				2DEAC19126947AA40041BF55 /* Students.swift */,
 				2DEAC19426947C770041BF55 /* TableViewCell.swift */,
 				2DEAC17E269466430041BF55 /* Main.storyboard */,
 				2DEAC181269466480041BF55 /* Assets.xcassets */,
 				2DEAC183269466480041BF55 /* LaunchScreen.storyboard */,
+				2DE3EAD52699CF01000A1C75 /* Model.xcdatamodeld */,
 				2DEAC186269466480041BF55 /* Info.plist */,
 			);
 			path = "Students Llst";
@@ -146,10 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DEAC17D269466430041BF55 /* ViewController.swift in Sources */,
 				2DEAC18E269467920041BF55 /* TableVC.swift in Sources */,
+				2D6F9A71269D8CAC00EDE934 /* EditStudentTVC.swift in Sources */,
 				2DEAC19226947AA40041BF55 /* Students.swift in Sources */,
+				2DE3EAD72699CF01000A1C75 /* Model.xcdatamodeld in Sources */,
 				2DEAC19526947C770041BF55 /* TableViewCell.swift in Sources */,
+				2DE3EADC269C6DD7000A1C75 /* SecondTableViewController.swift in Sources */,
 				2DEAC179269466430041BF55 /* AppDelegate.swift in Sources */,
 				2DEAC17B269466430041BF55 /* SceneDelegate.swift in Sources */,
 			);
@@ -353,6 +361,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2DE3EAD52699CF01000A1C75 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2DE3EAD62699CF01000A1C75 /* Model.xcdatamodel */,
+			);
+			currentVersion = 2DE3EAD62699CF01000A1C75 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2DEAC16D269466430041BF55 /* Project object */;
 }

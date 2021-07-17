@@ -1,15 +1,9 @@
-//
-//  ViewController.swift
-//  Students Llst
-//
-//  Created by Всеволод on 06.07.2021.
-//
-
 import UIKit
+import CoreData
 
-class ViewController: UIViewController {
+class SecondTableViewController: UITableViewController {
     
-    var studentsVC = Students(name: "", surname: "", averageScore: "")
+    var studentssVC = Student()
     var messageOne = "Please, enter a number from 1 to 5"
     var messageTwo = "Please, enter only English or Russian letters"
     
@@ -19,7 +13,7 @@ class ViewController: UIViewController {
         surnameTextField.delegate = self
         averageScoreTextField.delegate = self
         hideSaveButton()
-        updateUI()
+        title = "Новый студент"
     }
     
     
@@ -29,13 +23,29 @@ class ViewController: UIViewController {
         let name = nameTextField.text ?? ""
         let surname = surnameTextField.text ?? ""
         let averageScore = averageScoreTextField.text ?? ""
-        self.studentsVC = Students(name: name, surname: surname, averageScore: averageScore)
+        saveStudent(name: name, surname: surname, averageScore: averageScore)
     }
     
-    private func updateUI() {
-        nameTextField.text = studentsVC.name
-        surnameTextField.text = studentsVC.surname
-        averageScoreTextField.text = String(studentsVC.averageScore)
+    func saveStudent(name: String, surname: String, averageScore: String) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Student", in: context)
+        let studentObject = NSManagedObject(entity: entity!, insertInto: context) as! Student
+        
+        studentObject.nameEntity = name
+        studentObject.surnameEntity = surname
+        studentObject.averageScoreEntity = averageScore
+        
+        do {
+            try context.save()
+            studentssVC = studentObject
+            tableView.reloadData()
+            print("Saved new student in CoreData!")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func alertController(message: String) {
@@ -49,10 +59,9 @@ class ViewController: UIViewController {
         let name = nameTextField.text ?? ""
         let surname = surnameTextField.text ?? ""
         let score = averageScoreTextField.text ?? ""
-        
         saveOutlet.isEnabled = !name.isEmpty && !surname.isEmpty && !score.isEmpty
     }
-
+    
     
     @IBAction func followTheText(_ sender: UITextField!) {
         hideSaveButton()
@@ -80,6 +89,7 @@ class ViewController: UIViewController {
         }
     }
     
+    
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var surnameTextField: UITextField!
     @IBOutlet var averageScoreTextField: UITextField!
@@ -92,8 +102,19 @@ class ViewController: UIViewController {
 }
 
 
+func numberOfSections(in tableView: UITableView) -> Int {
+    // #warning Incomplete implementation, return the number of sections
+    return 3
+}
 
-extension ViewController: UITextFieldDelegate {
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+    return 1
+}
+
+
+
+extension SecondTableViewController: UITextFieldDelegate {
     
     //скрытие клавиатуры по нажатию на область вне клавиатуры
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewCell: UITableViewCell {
 
@@ -18,10 +19,10 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var surnameLabel: UILabel!
     
     //метод добаляет значения в лэйблы
-    func set(person: Students) {
-        nameLabel.text = person.name
-        surnameLabel.text = person.surname
-        averageScore.text = String(person.averageScore)
+    func set(person: Student) {
+        nameLabel.text = person.nameEntity
+        surnameLabel.text = person.surnameEntity
+        averageScore.text = person.averageScoreEntity
     }
     
 }
