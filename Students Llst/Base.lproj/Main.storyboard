@@ -16,31 +16,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="9Uk-qm-pXD" customClass="TableViewCell" customModule="Students_Llst" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="9Uk-qm-pXD" customClass="TableViewCell" customModule="Students_Llst" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Uk-qm-pXD" id="sHq-u3-fpW">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-Td-K0y">
+                                            <rect key="frame" x="20" y="12" width="75" height="75"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxt-H6-8Nn">
-                                            <rect key="frame" x="20" y="6" width="143" height="49"/>
+                                            <rect key="frame" x="120" y="11" width="150" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qoq-he-9yD">
+                                            <rect key="frame" x="120" y="57" width="150" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5f-1E-stK">
-                                            <rect key="frame" x="329" y="6" width="79" height="49"/>
+                                            <rect key="frame" x="278" y="26" width="79" height="49"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBoldItalic" family="Avenir Next" pointSize="24"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qoq-he-9yD">
-                                            <rect key="frame" x="171" y="6" width="150" height="49"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -48,6 +53,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="averageScore" destination="h5f-1E-stK" id="i69-Of-HAG"/>
+                                    <outlet property="imageLabelOfStudent" destination="zUu-Td-K0y" id="C8x-Ut-9Xd"/>
                                     <outlet property="nameLabel" destination="Kxt-H6-8Nn" id="EGc-MV-sp4"/>
                                     <outlet property="surnameLabel" destination="Qoq-he-9yD" id="6wb-hO-Lli"/>
                                     <segue destination="UNL-3W-ZWZ" kind="show" identifier="editInfo" id="RFV-Vv-aUy"/>
@@ -81,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="                                           Имя" id="kVL-TR-SGC">
+                            <tableViewSection headerTitle="Имя" id="kVL-TR-SGC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="aVn-18-8nT">
                                         <rect key="frame" x="0.0" y="28" width="428" height="55"/>
@@ -105,7 +111,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="                                      Фамилия" id="PpS-Ci-70u">
+                            <tableViewSection headerTitle="Фамилия" id="PpS-Ci-70u">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="hSB-Qn-CwZ">
                                         <rect key="frame" x="0.0" y="139" width="428" height="55"/>
@@ -129,7 +135,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="                                    Средний балл" id="PXg-QR-hkt">
+                            <tableViewSection headerTitle="Средний балл" id="PXg-QR-hkt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="vdV-6O-XYS">
                                         <rect key="frame" x="0.0" y="250" width="428" height="55"/>
@@ -148,6 +154,25 @@
                                                         <action selector="followTheText:" destination="WWV-Bz-ZeP" eventType="editingChanged" id="fkW-Qa-CMn"/>
                                                     </connections>
                                                 </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Фото" id="Urt-XP-htV">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="223" id="aIe-B2-pog">
+                                        <rect key="frame" x="0.0" y="361" width="428" height="223"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aIe-B2-pog" id="QdF-Rg-GrU">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="223"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HlY-5s-t9s">
+                                                    <rect key="frame" x="114" y="11" width="200" height="200"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -173,6 +198,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="averageScoreTextField" destination="vte-Xz-zCx" id="GGA-Wr-Yo0"/>
+                        <outlet property="imageofStudent" destination="HlY-5s-t9s" id="wZs-1D-8EG"/>
                         <outlet property="nameTextField" destination="tlv-5A-Ed9" id="zBN-Oj-WX7"/>
                         <outlet property="saveOutlet" destination="SQQ-ha-tRD" id="6Qn-0W-LIA"/>
                         <outlet property="surnameTextField" destination="xPc-J5-EVN" id="8bj-Bx-r8N"/>
@@ -181,7 +207,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UN-Wb-Af3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="DCo-0z-HUd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="-394"/>
+            <point key="canvasLocation" x="1572.8971962616822" y="-394.60043196544279"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cT0-78-sE7">
@@ -231,7 +257,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="                                           Имя" id="EG0-4H-4Wp">
+                            <tableViewSection headerTitle="Имя" id="EG0-4H-4Wp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="Nz1-ic-iLb">
                                         <rect key="frame" x="0.0" y="28" width="428" height="55"/>
@@ -255,7 +281,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="                                      Фамилия" id="Ayy-Qf-veQ">
+                            <tableViewSection headerTitle="Фамилия" id="Ayy-Qf-veQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="OO5-IA-Eb4">
                                         <rect key="frame" x="0.0" y="139" width="428" height="55"/>
@@ -279,7 +305,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="                                    Средний балл" id="v38-cL-sTB">
+                            <tableViewSection headerTitle="Средний балл" id="v38-cL-sTB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="AmP-Zl-Qne">
                                         <rect key="frame" x="0.0" y="250" width="428" height="55"/>
@@ -298,6 +324,25 @@
                                                         <action selector="onlyNumber:" destination="gLq-tn-zaT" eventType="editingChanged" id="1IO-aW-oRd"/>
                                                     </connections>
                                                 </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Фото" id="Qgu-Fp-Yoe">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="223" id="Bn9-oA-B6h">
+                                        <rect key="frame" x="0.0" y="361" width="428" height="223"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bn9-oA-B6h" id="0H0-WM-hp9">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="223"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nj2-o3-B1R">
+                                                    <rect key="frame" x="114" y="11" width="200" height="200"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -322,6 +367,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageOfStudentEdit" destination="nj2-o3-B1R" id="eUu-T4-2S3"/>
                         <outlet property="nameTF" destination="dNj-El-La4" id="MH7-yn-Gll"/>
                         <outlet property="saveButtonOutlet" destination="qbV-lF-IIm" id="lA5-x0-6GR"/>
                         <outlet property="scoreTF" destination="hcw-FB-Xau" id="nKw-6t-lJy"/>
@@ -331,7 +377,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHr-1V-pq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="BHQ-Gk-jaE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1573" y="298"/>
+            <point key="canvasLocation" x="1572.8971962616822" y="296.76025917926569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wqz-O6-HPH">
@@ -354,6 +400,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

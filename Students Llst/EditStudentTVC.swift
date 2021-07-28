@@ -4,11 +4,10 @@ import CoreData
 class EditStudentTVC: UITableViewController {
     
     var students = Student()
-    var messageOne = "Пожалуйста, введите средний балл от 1 до 5"
-    var messageTwo = "Допустимы только русские или английскте буквы"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageOfStudentEdit.layer.cornerRadius = 15
         nameTF.delegate = self
         surnameTF.delegate = self
         scoreTF.delegate = self
@@ -23,10 +22,12 @@ class EditStudentTVC: UITableViewController {
         let name = nameTF.text ?? ""
         let surname = surnameTF.text ?? ""
         let averageScore = scoreTF.text ?? ""
-        updateStudent(student: students, name: name, surname: surname, averageScore: averageScore)
+        let image = imageOfStudentEdit.image ?? imageSt
+        let imageData = image?.pngData()
+        updateStudent(student: students, name: name, surname: surname, averageScore: averageScore, image: imageData)
     }
     
-    func updateStudent(student: Student,name: String, surname: String, averageScore: String) {
+    func updateStudent(student: Student,name: String, surname: String, averageScore: String, image: Data?) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -34,6 +35,7 @@ class EditStudentTVC: UITableViewController {
         student.nameEntity = name
         student.surnameEntity = surname
         student.averageScoreEntity = averageScore
+        student.imageStudentEntity = image
         
         do {
             try context.save()
@@ -44,8 +46,8 @@ class EditStudentTVC: UITableViewController {
         }
     }
     
-    func alertController(message: String) {
-        let alertController = UIAlertController(title: "Error", message: message , preferredStyle: .alert)
+   private func alertController(message: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: message , preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(ok)
         present(alertController, animated: true, completion: nil)
@@ -61,6 +63,7 @@ class EditStudentTVC: UITableViewController {
     @IBOutlet var nameTF: UITextField!
     @IBOutlet var surnameTF: UITextField!
     @IBOutlet var scoreTF: UITextField!
+    @IBOutlet var imageOfStudentEdit: UIImageView!
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -70,8 +73,6 @@ class EditStudentTVC: UITableViewController {
     
     @IBAction func onlyEngAndRus(_ sender: UITextField) {
         guard let lastChar = sender.text?.last?.description.lowercased() else { return }
-        let ruCharacters = "йцукенгшщзхъфывапролджэёячсмитьбю"
-        let engCharacters = "qwertyuiopasdfghjklzxcvbnm"
         guard ruCharacters.contains(lastChar) || engCharacters.contains(lastChar) else {
             alertController(message: messageTwo)
             sender.text?.removeLast()
@@ -85,7 +86,6 @@ class EditStudentTVC: UITableViewController {
     
     @IBAction func onlyNumber(_ sender: UITextField) {
         guard let lastChar = sender.text?.last?.description.lowercased() else { return }
-        let numbers = "12345"
         guard numbers.contains(lastChar) else {
             alertController(message: messageOne)
             sender.text?.removeLast()
@@ -97,6 +97,7 @@ class EditStudentTVC: UITableViewController {
         nameTF.text = students.nameEntity
         surnameTF.text = students.surnameEntity
         scoreTF.text = students.averageScoreEntity
+        imageOfStudentEdit.image = UIImage(data: (students.imageStudentEntity ?? imageSt?.pngData())!)
         print("Update view in EditTVC")
     }
     
@@ -104,7 +105,7 @@ class EditStudentTVC: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,7 +115,7 @@ class EditStudentTVC: UITableViewController {
 }
 
 
-extension EditStudentTVC: UITextFieldDelegate {
+extension EditStudentTVC: UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //скрытие клавиатуры по нажатию на область вне клавиатуры
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -148,5 +149,39 @@ extension EditStudentTVC: UITextFieldDelegate {
             }
         }
         return true
+    }
+    
+    
+    //выбор картинки из галереи
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    // сохранение картинки
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[.editedImage] as? UIImage
+        imageSt = image
+        imageOfStudentEdit.image = image
+        imageOfStudentEdit.contentMode = .scaleAspectFill
+        imageOfStudentEdit.clipsToBounds = true
+        dismiss(animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 3 && indexPath.row == 0 {
+            
+            self.chooseImagePicker(source: .photoLibrary)
+            
+        } else {
+            tableView.endEditing(true)
+        }
     }
 }

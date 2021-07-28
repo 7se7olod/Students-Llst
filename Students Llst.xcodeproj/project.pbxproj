@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D660AE326B0319900AF2DD5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D660AE226B0319900AF2DD5 /* Message.swift */; };
 		2D6F9A71269D8CAC00EDE934 /* EditStudentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F9A70269D8CAC00EDE934 /* EditStudentTVC.swift */; };
 		2DE3EAD72699CF01000A1C75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3EAD52699CF01000A1C75 /* Model.xcdatamodeld */; };
 		2DE3EADC269C6DD7000A1C75 /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3EADB269C6DD7000A1C75 /* SecondTableViewController.swift */; };
@@ -16,11 +17,11 @@
 		2DEAC182269466480041BF55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DEAC181269466480041BF55 /* Assets.xcassets */; };
 		2DEAC185269466480041BF55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DEAC183269466480041BF55 /* LaunchScreen.storyboard */; };
 		2DEAC18E269467920041BF55 /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEAC18D269467920041BF55 /* TableVC.swift */; };
-		2DEAC19226947AA40041BF55 /* Students.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEAC19126947AA40041BF55 /* Students.swift */; };
 		2DEAC19526947C770041BF55 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEAC19426947C770041BF55 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D660AE226B0319900AF2DD5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2D6F9A70269D8CAC00EDE934 /* EditStudentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentTVC.swift; sourceTree = "<group>"; };
 		2DE3EAD62699CF01000A1C75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		2DE3EADB269C6DD7000A1C75 /* SecondTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		2DEAC184269466480041BF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DEAC186269466480041BF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DEAC18D269467920041BF55 /* TableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
-		2DEAC19126947AA40041BF55 /* Students.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Students.swift; sourceTree = "<group>"; };
 		2DEAC19426947C770041BF55 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,8 +70,8 @@
 				2DEAC17A269466430041BF55 /* SceneDelegate.swift */,
 				2DE3EADB269C6DD7000A1C75 /* SecondTableViewController.swift */,
 				2D6F9A70269D8CAC00EDE934 /* EditStudentTVC.swift */,
+				2D660AE226B0319900AF2DD5 /* Message.swift */,
 				2DEAC18D269467920041BF55 /* TableVC.swift */,
-				2DEAC19126947AA40041BF55 /* Students.swift */,
 				2DEAC19426947C770041BF55 /* TableViewCell.swift */,
 				2DEAC17E269466430041BF55 /* Main.storyboard */,
 				2DEAC181269466480041BF55 /* Assets.xcassets */,
@@ -154,10 +154,10 @@
 			files = (
 				2DEAC18E269467920041BF55 /* TableVC.swift in Sources */,
 				2D6F9A71269D8CAC00EDE934 /* EditStudentTVC.swift in Sources */,
-				2DEAC19226947AA40041BF55 /* Students.swift in Sources */,
 				2DE3EAD72699CF01000A1C75 /* Model.xcdatamodeld in Sources */,
 				2DEAC19526947C770041BF55 /* TableViewCell.swift in Sources */,
 				2DE3EADC269C6DD7000A1C75 /* SecondTableViewController.swift in Sources */,
+				2D660AE326B0319900AF2DD5 /* Message.swift in Sources */,
 				2DEAC179269466430041BF55 /* AppDelegate.swift in Sources */,
 				2DEAC17B269466430041BF55 /* SceneDelegate.swift in Sources */,
 			);

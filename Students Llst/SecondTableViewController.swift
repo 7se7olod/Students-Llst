@@ -3,12 +3,11 @@ import CoreData
 
 class SecondTableViewController: UITableViewController {
     
-    var studentssVC = Student()
-    var messageOne = "Please, enter a number from 1 to 5"
-    var messageTwo = "Please, enter only English or Russian letters"
+    var studentSTVC = Student()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageofStudent.layer.cornerRadius = 15
         nameTextField.delegate = self
         surnameTextField.delegate = self
         averageScoreTextField.delegate = self
@@ -23,10 +22,12 @@ class SecondTableViewController: UITableViewController {
         let name = nameTextField.text ?? ""
         let surname = surnameTextField.text ?? ""
         let averageScore = averageScoreTextField.text ?? ""
-        saveStudent(name: name, surname: surname, averageScore: averageScore)
+        let image = imageofStudent.image ?? imageSt
+        let imgData = image?.pngData()
+        saveStudent(name: name, surname: surname, averageScore: averageScore, image: imgData)
     }
     
-    func saveStudent(name: String, surname: String, averageScore: String) {
+   private func saveStudent(name: String, surname: String, averageScore: String, image: Data?) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -37,10 +38,11 @@ class SecondTableViewController: UITableViewController {
         studentObject.nameEntity = name
         studentObject.surnameEntity = surname
         studentObject.averageScoreEntity = averageScore
+        studentObject.imageStudentEntity = image
         
         do {
             try context.save()
-            studentssVC = studentObject
+            studentSTVC = studentObject
             tableView.reloadData()
             print("Saved new student in CoreData!")
         } catch {
@@ -48,12 +50,13 @@ class SecondTableViewController: UITableViewController {
         }
     }
     
-    func alertController(message: String) {
-        let alertController = UIAlertController(title: "Error", message: message , preferredStyle: .alert)
+   private func alertController(message: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: message , preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(ok)
         present(alertController, animated: true, completion: nil)
     }
+    
     
     private func hideSaveButton() {
         let name = nameTextField.text ?? ""
@@ -70,8 +73,6 @@ class SecondTableViewController: UITableViewController {
     @IBAction func enterNameTF(_ sender: UITextField!) {
         
         guard let lastChar = sender.text?.last?.description.lowercased() else { return }
-        let ruCharacters = "йцукенгшщзхъфывапролджэёячсмитьбю"
-        let engCharacters = "qwertyuiopasdfghjklzxcvbnm"
         guard ruCharacters.contains(lastChar) || engCharacters.contains(lastChar) else {
             alertController(message: messageTwo)
             sender.text?.removeLast()
@@ -81,9 +82,10 @@ class SecondTableViewController: UITableViewController {
     
     @IBAction func averageAction(_ sender: UITextField) {
         guard let lastChar = sender.text?.last?.description.lowercased() else { return }
-        let numbers = "12345"
+        
         guard numbers.contains(lastChar) else {
             alertController(message: messageOne)
+            
             sender.text?.removeLast()
             return
         }
@@ -93,6 +95,7 @@ class SecondTableViewController: UITableViewController {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var surnameTextField: UITextField!
     @IBOutlet var averageScoreTextField: UITextField!
+    @IBOutlet var imageofStudent: UIImageView!
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -114,7 +117,7 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 
 
 
-extension SecondTableViewController: UITextFieldDelegate {
+extension SecondTableViewController: UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //скрытие клавиатуры по нажатию на область вне клавиатуры
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -148,5 +151,37 @@ extension SecondTableViewController: UITextFieldDelegate {
             }
         }
         return true
+    }
+    
+    //выбор картинки из галереи
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    // сохранение картинки
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[.editedImage] as? UIImage
+        imageofStudent.image = image
+        imageofStudent.contentMode = .scaleAspectFill
+        imageofStudent.clipsToBounds = true
+        dismiss(animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 3 && indexPath.row == 0 {
+            
+            self.chooseImagePicker(source: .photoLibrary)
+            
+        } else {
+            tableView.endEditing(true)
+        }
     }
 }

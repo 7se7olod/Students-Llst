@@ -3,8 +3,7 @@ import CoreData
 
 class TableVC: UITableViewController {
     
-    var studentss: [Student] = []
-    
+    var students: [Student] = []
     
     override func viewDidAppear(_ animated: Bool) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -12,7 +11,7 @@ class TableVC: UITableViewController {
         let fetchRequest: NSFetchRequest<Student> = Student.fetchRequest()
         
         do {
-            studentss = try context.fetch(fetchRequest)
+            students = try context.fetch(fetchRequest)
         } catch {
             print(error.localizedDescription)
         }
@@ -28,9 +27,9 @@ class TableVC: UITableViewController {
         
         guard segue.identifier == "saveSegue" else { return }
         let vc = segue.source as! SecondTableViewController
-        let sTVC = vc.studentssVC
-        let newIndexPath = IndexPath(row: studentss.count, section: 0)
-        studentss.append(sTVC)
+        let sTVC = vc.studentSTVC
+        let newIndexPath = IndexPath(row: students.count, section: 0)
+        students.append(sTVC)
         tableView.insertRows(at: [newIndexPath], with: .fade)
         print("Add student \(sTVC.nameEntity!), \(sTVC.surnameEntity!), \(sTVC.averageScoreEntity!)")
     }
@@ -42,7 +41,7 @@ class TableVC: UITableViewController {
         let stud = etvc.students
         
         guard let selectedRow = tableView.indexPathForSelectedRow else {return}
-        studentss[selectedRow.row] = stud
+        students[selectedRow.row] = stud
         tableView.reloadRows(at: [selectedRow], with: .fade)
         print("Edit student to \(stud.nameEntity!),\(stud.surnameEntity!),\(stud.averageScoreEntity!) ")
     }
@@ -55,25 +54,28 @@ class TableVC: UITableViewController {
         let nvc = segue.destination as! UINavigationController
         let newvc = nvc.topViewController as! EditStudentTVC
         let indexPath = tableView.indexPathForSelectedRow!
-        let pupils = studentss[indexPath.row]
+        let pupils = students[indexPath.row]
         newvc.students = pupils
         newvc.title = "Edit"
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentss.count
+        return students.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         
-        let person = studentss[indexPath.row]
+        let person = students[indexPath.row]
         cell.set(person: person)
         
         return cell
@@ -86,8 +88,8 @@ class TableVC: UITableViewController {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             
-            let studentDelete = studentss[indexPath.row]
-            studentss.remove(at: indexPath.row)
+            let studentDelete = students[indexPath.row]
+            students.remove(at: indexPath.row)
             
             context.delete(studentDelete)
             print("Deleted student \(studentDelete.nameEntity!),\(studentDelete.surnameEntity!),\(studentDelete.averageScoreEntity!)")
